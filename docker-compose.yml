@@ -5,8 +5,6 @@ services:
     image: subtitle-image
     build:
       context: .
-    depends_on:
-      - mysql-docker-container
     ports:
       - "8098:8098"
     environment:
