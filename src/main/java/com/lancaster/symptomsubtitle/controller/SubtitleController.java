@@ -13,31 +13,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/subtitles")
+@RequestMapping("/subtitles")
 public class SubtitleController {
 
     @Autowired
     private SubtitleService service;
 
-    @GetMapping("fetchSubtitles")
+    @GetMapping("")
     public List<Subtitle> fetchSubtitles() {
         return service.fetchSubtitles();
     }
 
-    @RequestMapping(value = "createSubtitle", method = RequestMethod.POST, produces = {
+    @RequestMapping(value = "create", method = RequestMethod.POST, produces = {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(HttpStatus.CREATED)
     public void createChapter(@Validated @RequestBody Subtitle subtitle) {
         service.saveSubtitle(subtitle);
     }
 
-    @RequestMapping(value = "findSubtitleWithName/{name}", method = RequestMethod.GET, produces = {
+    @RequestMapping(value = "subtitle/{name}", method = RequestMethod.GET, produces = {
             MediaType.APPLICATION_JSON_VALUE})
     public Subtitle findSubtitleWithName(@PathVariable("name") String name) {
         return service.fetchSubtitleWithName(name);
     }
 
-    @RequestMapping(value = "updateSubtitle/{id}", method = RequestMethod.PUT, produces = {
+    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT, produces = {
             MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Subtitle> updateSubtitle(@RequestBody Subtitle subtitle, @PathVariable("id") int id) {
         Subtitle s = service.updateSubtitle(subtitle, id);
