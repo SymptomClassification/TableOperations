@@ -7,6 +7,16 @@ pipeline {
                 git branch: 'master', url: 'https://dagere.comiles.eu/git/SymptomClassification/SymptomSubtitleService'
             }
         }
+        stage('Maven Package') {
+            steps {
+                sh './mvnw clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './mvnw test'
+            }
+        }
         stage('Build Docker Images') {
             steps {
                 sh 'docker-compose build'
