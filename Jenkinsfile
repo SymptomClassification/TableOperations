@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        JAVA_HOME = '/usr/bin/java'
+    }
     agent any
 
     stages {
