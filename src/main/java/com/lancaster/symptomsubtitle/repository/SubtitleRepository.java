@@ -42,10 +42,8 @@ public class SubtitleRepository {
             ResultSet rs = stm.executeQuery(selectAll);
 
             while (rs.next()) {
-                subtitle = new Subtitle();
-                subtitle.setId(rs.getInt("id"));
-                subtitle.setChapterId(rs.getInt("chapterId"));
-                subtitle.setName(rs.getString("name"));
+                subtitle =
+                        new Subtitle(rs.getInt("id"), rs.getInt("chapterId"), rs.getString("name"));
                 subtitles.add(subtitle);
             }
         } catch (SQLException e) {
@@ -61,9 +59,9 @@ public class SubtitleRepository {
 
         try {
             PreparedStatement stm = getDBConnection().prepareStatement(create);
-            stm.setInt(1, subtitle.getId());
-            stm.setInt(2, subtitle.getChapterId());
-            stm.setString(3, subtitle.getName());
+            stm.setInt(1, subtitle.id());
+            stm.setInt(2, subtitle.chapterId());
+            stm.setString(3, subtitle.name());
             stm.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -93,10 +91,8 @@ public class SubtitleRepository {
             ResultSet rs = stm.executeQuery();
 
             if (rs.next()) {
-                subtitle = new Subtitle();
-                subtitle.setId(rs.getInt("id"));
-                subtitle.setChapterId(rs.getInt("chapter_id"));
-                subtitle.setName(rs.getString("name"));
+                subtitle =
+                        new Subtitle(rs.getInt("id"), rs.getInt("chapter_id"), rs.getString("name"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -112,11 +108,10 @@ public class SubtitleRepository {
             return Optional.empty();
         }
 
-        try {
-            PreparedStatement stm = getDBConnection().prepareStatement(update);
-            stm.setInt(1, subtitle.getChapterId());
-            stm.setString(2, subtitle.getName());
-            stm.setInt(3, subtitle.getId());
+        try (PreparedStatement stm = getDBConnection().prepareStatement(update)) {
+            stm.setInt(1, subtitle.chapterId());
+            stm.setString(2, subtitle.name());
+            stm.setInt(3, subtitle.id());
             stm.executeUpdate();
             sub = fetchSubtitleWithId(id);
         } catch (SQLException e) {
@@ -136,10 +131,9 @@ public class SubtitleRepository {
             ResultSet rs = stm.executeQuery();
 
             if (rs.next()) {
-                subtitle = new Subtitle();
-                subtitle.setId(rs.getInt("id"));
-                subtitle.setChapterId(rs.getInt("chapterId"));
-                subtitle.setName(rs.getString("name"));
+                subtitle =
+                        new Subtitle(rs.getInt("id"), rs.getInt("chapterId"), rs.getString("name"));
+
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

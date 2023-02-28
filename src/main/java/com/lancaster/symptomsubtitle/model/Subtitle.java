@@ -1,20 +1,12 @@
 package com.lancaster.symptomsubtitle.model;
 
-import lombok.*;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 @Entity
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class Subtitle {
-    @Id @GeneratedValue
-    private int id;
-    private int chapterId;
-    private String name;
+public record Subtitle(@Id @GeneratedValue int id, int chapterId, String name) {
+    public Subtitle() {
+        this(0, 0, "");
+    }
 }
