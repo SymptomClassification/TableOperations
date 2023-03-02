@@ -59,9 +59,9 @@ public class SubtitleRepository {
 
         try {
             PreparedStatement stm = getDBConnection().prepareStatement(create);
-            stm.setInt(1, subtitle.id());
-            stm.setInt(2, subtitle.chapterId());
-            stm.setString(3, subtitle.name());
+            stm.setInt(1, subtitle.getId());
+            stm.setInt(2, subtitle.getChapterId());
+            stm.setString(3, subtitle.getName());
             stm.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -109,9 +109,9 @@ public class SubtitleRepository {
         }
 
         try (PreparedStatement stm = getDBConnection().prepareStatement(update)) {
-            stm.setInt(1, subtitle.chapterId());
-            stm.setString(2, subtitle.name());
-            stm.setInt(3, subtitle.id());
+            stm.setInt(1, subtitle.getChapterId());
+            stm.setString(2, subtitle.getName());
+            stm.setInt(3, subtitle.getId());
             stm.executeUpdate();
             sub = fetchSubtitleWithId(id);
         } catch (SQLException e) {
