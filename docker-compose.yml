@@ -14,8 +14,7 @@ services:
     volumes:
       - /data/subtitle-app
     networks:
-      default:
-        ipv4_address: 172.22.0.4
+      - default
     container_name: subtitle-api
 
 networks:
