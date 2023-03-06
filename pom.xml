@@ -5,16 +5,16 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.8</version>
+        <version>3.0.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lancaster</groupId>
     <artifactId>TableOperations</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>SymptomSubtitle</name>
-    <description>Symptom Subtitle CRUD operation API</description>
+    <name>TableOperations</name>
+    <description>REST API for CRUD operations on Symptom, Chapter, Subchapters, SecondSubChapters, Subtitle and KeywordClassifiedSymptoms tables</description>
     <properties>
-        <java.version>8</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -56,11 +56,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>

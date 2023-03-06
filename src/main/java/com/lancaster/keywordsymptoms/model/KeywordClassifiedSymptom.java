@@ -1,10 +1,10 @@
-package com.lancaster.symptomsubchapter.model;
+package com.lancaster.keywordsymptoms.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 
 @Entity
@@ -13,14 +13,15 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubChapter {
-
+public class KeywordClassifiedSymptom {
     @Id
     @GeneratedValue
     private int id;
-    @NotNull()
-    private String name;
-    @NotNull()
+    private int symptomId;
     private int chapterId;
+    @Nullable
+    private int subchapterId;
+    @Nullable
+    private int secondsubId;
 
 }

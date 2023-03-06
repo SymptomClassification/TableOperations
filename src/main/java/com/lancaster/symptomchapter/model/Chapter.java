@@ -1,4 +1,4 @@
-package com.lancaster.symptomsubtitle.model;
+package com.lancaster.symptomchapter.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,10 +12,9 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Subtitle {
+public class Chapter {
     @Id
     @GeneratedValue
-    int id;
-    int chapterId;
-    String name;
+    private int id;
+    private String name;
 }
