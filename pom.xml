@@ -12,7 +12,9 @@
     <artifactId>TableOperations</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>TableOperations</name>
-    <description>REST API for CRUD operations on Symptom, Chapter, Subchapters, SecondSubChapters, Subtitle and KeywordClassifiedSymptoms tables</description>
+    <description>REST API for CRUD operations on Symptom, Chapter, Subchapters, SecondSubChapters, Subtitle and
+        KeywordClassifiedSymptoms tables
+    </description>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -101,6 +103,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <release>17</release>
+                </configuration>
             </plugin>
         </plugins>
     </build>
