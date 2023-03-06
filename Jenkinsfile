@@ -11,16 +11,17 @@ pipeline {
                 git branch: 'master', url: 'https://dagere.comiles.eu/git/SymptomClassification/TableOperations'
             }
         }
-        stage('Maven Package') {
-            steps {
-                sh './mvnw clean package'
-            }
-        }
         stage('Test') {
             steps {
                 sh './mvnw test'
             }
         }
+        stage('Maven Package') {
+            steps {
+                sh './mvnw clean package'
+            }
+        }
+
         stage('Build Docker Images') {
             steps {
                 sh 'docker-compose build'
