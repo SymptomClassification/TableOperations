@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lancaster</groupId>
-    <artifactId>SymptomSubtitle</artifactId>
+    <artifactId>TableOperations</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SymptomSubtitle</name>
     <description>Symptom Subtitle CRUD operation API</description>

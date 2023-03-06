@@ -2,7 +2,7 @@ version: '3'
 
 services:
   subtitle-api:
-    image: subtitle-image
+    image: tableoperations-image
     build:
       context: .
     ports:
@@ -14,8 +14,10 @@ services:
     volumes:
       - /data/subtitle-app
     networks:
-      - default
-    container_name: subtitle-api
+      default:
+        aliases:
+          - subtitle
+    container_name: tableoperations-api
 
 networks:
   default:
