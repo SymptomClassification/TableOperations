@@ -12,7 +12,7 @@ services:
       SPRING_DATASOURCE_USERNAME: ahmet
       SPRING_DATASOURCE_PASSWORD: mypass
     volumes:
-      - /data/subtitle-app
+      - /data/tableoperations-app
     networks:
       default:
         aliases:
