@@ -16,7 +16,7 @@ services:
     networks:
       default:
         aliases:
-          - subtitle
+          - tableoperations
     container_name: tableoperations-api
 
 networks:
