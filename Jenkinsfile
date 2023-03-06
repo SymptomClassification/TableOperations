@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'master', url: 'https://dagere.comiles.eu/git/SymptomClassification/SymptomSubtitleService'
+                git branch: 'master', url: 'https://dagere.comiles.eu/git/SymptomClassification/TableOperations'
             }
         }
         stage('Maven Package') {
