@@ -26,9 +26,9 @@ pipeline {
             steps {
                 script {
                     def containers = sh(returnStdout: true, script: 'docker ps --format "{{.Names}}"').split("\n")
-                    if (containers.contains('subtitle-api')) {
-                        sh "docker stop subtitle-api"
-                        sh "docker rm subtitle-api"
+                    if (containers.contains('tableoperations-api')) {
+                        sh "docker stop tableoperations-api"
+                        sh "docker rm tableoperations-api"
                     }
                 }
             }
