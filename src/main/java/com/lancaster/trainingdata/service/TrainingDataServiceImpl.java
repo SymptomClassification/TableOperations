@@ -23,4 +23,9 @@ public class TrainingDataServiceImpl implements TrainingDataService {
     public List<Map<String, String>> fetchTrainingDataDefinitions() {
         return repo.getTrainingDataDescriptions();
     }
+
+    @Override
+    public TrainingData updateTrainingData(TrainingData trainingData, int id) {
+        return repo.updateTrainingData(trainingData, id).get();
+    }
 }

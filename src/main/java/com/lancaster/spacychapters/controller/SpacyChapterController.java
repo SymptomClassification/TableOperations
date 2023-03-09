@@ -22,12 +22,12 @@ public class SpacyChapterController {
         return service.getSpacyChapters();
     }
 
-    @RequestMapping("/subchapters")
+    @RequestMapping("subchapters")
     public List<Map<String, String>> getSpacySubChapters() {
         return service.getSpacySubChapters();
     }
 
-    @RequestMapping("/subchapters/{id}")
+    @RequestMapping("subchapters/{id}")
     public List<Map<String, String>> getSubchaptersOfChapter(@PathVariable("id") int id) {
         return service.getSubchaptersOfChapter(id);
     }

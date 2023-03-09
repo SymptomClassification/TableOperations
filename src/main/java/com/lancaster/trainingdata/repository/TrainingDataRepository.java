@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class TrainingDataRepository {
@@ -78,5 +79,41 @@ public class TrainingDataRepository {
         }
 
         return result;
+    }
+
+    public Optional<TrainingData> updateTrainingData(TrainingData trainingData, int id) {
+        Optional<TrainingData> result = fetchTrainingDataWithId(id);
+        String update = "UPDATE databasetrainingdata SET label = ? WHERE id = ?";
+
+        if (result.isEmpty()) {
+            return Optional.empty();
+        }
+
+        try {
+            PreparedStatement stm = getDBConnection().prepareStatement(update);
+            stm.setInt(1, trainingData.getLabel());
+            stm.setInt(2, id);
+            stm.executeUpdate();
+            result = fetchTrainingDataWithId(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
+    public Optional<TrainingData> fetchTrainingDataWithId(int id) {
+        String selectById = "SELECT * FROM databasetrainingdata WHERE id = ?";
+        try {
+            PreparedStatement stm = getDBConnection().prepareStatement(selectById);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+
+            if (rs.next()) {
+                return Optional.of(new TrainingData(rs.getInt("id"), rs.getString("symptom"), rs.getInt("label")));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return Optional.empty();
     }
 }

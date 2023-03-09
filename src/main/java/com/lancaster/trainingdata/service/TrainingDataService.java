@@ -10,4 +10,6 @@ public interface TrainingDataService {
     List<TrainingData> fetchTrainingData();
 
     List<Map<String, String>> fetchTrainingDataDefinitions();
+
+    TrainingData updateTrainingData(TrainingData trainingData, int id);
 }
