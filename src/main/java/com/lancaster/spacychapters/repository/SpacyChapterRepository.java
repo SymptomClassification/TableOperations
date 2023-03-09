@@ -79,4 +79,32 @@ public class SpacyChapterRepository {
 
         return result;
     }
+
+    public List<Map<String, String>> getSubchapterOfChapter(int id) {
+        List<Map<String, String>> result = new ArrayList<>();
+
+        String query = "SELECT sc.id, sc.name, sc.chapterId\n" +
+                "FROM spacychapters c\n" +
+                "JOIN spacychapters sc ON c.id = sc.chapterId\n" +
+                "WHERE c.id = ? AND sc.id != ?;";
+
+        try {
+            PreparedStatement stm = getDBConnection().prepareStatement(query);
+            stm.setInt(1, id);
+            stm.setInt(2, id);
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                Map<String, String> chapter = new HashMap<>();
+                chapter.put("id", rs.getString("id"));
+                chapter.put("name", rs.getString("name"));
+                chapter.put("chapterId", rs.getString("chapterId"));
+                result.add(chapter);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return result;
+    }
 }

@@ -8,4 +8,6 @@ public interface SpacyChapterService {
     List<Map<String, String>> getSpacyChapters();
 
     List<Map<String, String>> getSpacySubChapters();
+
+    List<Map<String, String>> getSubchaptersOfChapter(int id);
 }

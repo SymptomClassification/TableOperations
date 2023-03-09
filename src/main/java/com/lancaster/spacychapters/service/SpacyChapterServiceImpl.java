@@ -22,4 +22,9 @@ public class SpacyChapterServiceImpl implements SpacyChapterService {
     public List<Map<String, String>> getSpacySubChapters() {
         return repo.getSubChapters();
     }
+
+    @Override
+    public List<Map<String, String>> getSubchaptersOfChapter(int id) {
+        return repo.getSubchapterOfChapter(id);
+    }
 }
