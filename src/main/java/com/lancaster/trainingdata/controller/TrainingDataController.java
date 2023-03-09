@@ -34,4 +34,11 @@ public class TrainingDataController {
         TrainingData updatedTrainingData = service.updateTrainingData(trainingData, id);
         return new ResponseEntity<>(updatedTrainingData, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "create", method = RequestMethod.POST, produces = {
+            MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Integer> saveTrainingData(@RequestBody TrainingData trainingData) {
+        int id = service.saveTrainingData(trainingData);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
 }

@@ -116,4 +116,27 @@ public class TrainingDataRepository {
         }
         return Optional.empty();
     }
+
+    public int saveTrainingData(TrainingData trainingData) {
+        String insert = "INSERT INTO databasetrainingdata (symptom, label) VALUES (?, ?)";
+        try {
+            PreparedStatement stm = getDBConnection().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stm.setString(1, trainingData.getSymptom());
+            stm.setInt(2, trainingData.getLabel());
+            int affectedRows = stm.executeUpdate();
+
+            ResultSet rs = stm.getGeneratedKeys();
+            if (affectedRows == 0) {
+                throw new SQLException("Creating subchapter failed, subchapter with the same name and chapter already exists.");
+            }
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else {
+                throw new SQLException("Creating subchapter failed, no ID obtained.");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -28,4 +28,9 @@ public class TrainingDataServiceImpl implements TrainingDataService {
     public TrainingData updateTrainingData(TrainingData trainingData, int id) {
         return repo.updateTrainingData(trainingData, id).get();
     }
+
+    @Override
+    public int saveTrainingData(TrainingData trainingData) {
+        return repo.saveTrainingData(trainingData);
+    }
 }
