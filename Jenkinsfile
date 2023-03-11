@@ -5,6 +5,12 @@ pipeline {
         jdk 'JDK17'
     }
 
+    environment {
+        DB_USERNAME = credentials('DB_USERNAME')
+        DB_PASSWORD = credentials('DB_PASSWORD')
+        DB_URL = credentials('DB_URL')
+    }
+
     stages {
         stage('Clone Repository') {
             steps {
@@ -40,7 +46,7 @@ pipeline {
         }
         stage('Start Container') {
             steps {
-                sh 'docker-compose up -d'
+                sh 'SPRING_DATASOURCE_URL=${DB_URL} SPRING_DATASOURCE_USERNAME=${DB_USERNAME} SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD} docker-compose up -d'
             }
         }
     }
