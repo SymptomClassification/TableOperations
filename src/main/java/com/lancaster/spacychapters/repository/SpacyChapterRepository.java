@@ -1,9 +1,12 @@
 package com.lancaster.spacychapters.repository;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.lancaster.databaseaccess.DatabaseConnector;
 import org.springframework.stereotype.Repository;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,27 +15,6 @@ import java.util.Map;
 @Repository
 public class SpacyChapterRepository {
 
-    private Connection con = null;
-
-    @Value("${spring.datasource.url}")
-    String dbUrl;
-    @Value("${spring.datasource.username}")
-    String userName;
-    @Value("${spring.datasource.password}")
-    String password;
-
-    private java.sql.Connection getDBConnection() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(dbUrl, userName, password);
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
-        }
-
-        return con;
-    }
-
-
     public List<Map<String, String>> getChapters() {
         List<Map<String, String>> result = new ArrayList<>();
         String query = "SELECT id, name, chapterId\n" +
@@ -40,7 +22,7 @@ public class SpacyChapterRepository {
                 "WHERE id = chapterId;";
 
         try {
-            Statement stm = getDBConnection().createStatement();
+            Statement stm = DatabaseConnector.getDBConnection().createStatement();
             ResultSet rs = stm.executeQuery(query);
 
             while (rs.next()) {
@@ -63,7 +45,7 @@ public class SpacyChapterRepository {
                 "WHERE id != chapterId;";
 
         try {
-            Statement stm = getDBConnection().createStatement();
+            Statement stm = DatabaseConnector.getDBConnection().createStatement();
             ResultSet rs = stm.executeQuery(query);
 
             while (rs.next()) {
@@ -89,7 +71,7 @@ public class SpacyChapterRepository {
                 "WHERE c.id = ? AND sc.id != ?;";
 
         try {
-            PreparedStatement stm = getDBConnection().prepareStatement(query);
+            PreparedStatement stm = DatabaseConnector.getDBConnection().prepareStatement(query);
             stm.setInt(1, id);
             stm.setInt(2, id);
             ResultSet rs = stm.executeQuery();
