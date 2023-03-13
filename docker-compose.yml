@@ -8,9 +8,9 @@ services:
     ports:
       - "8098:8098"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-docker-container:3306/classification?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&useLegacyDatetimeCode=false
-      SPRING_DATASOURCE_USERNAME: ahmet
-      SPRING_DATASOURCE_PASSWORD: mypass
+      SPRING_DATASOURCE_URL: ${DB_URL}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
     volumes:
       - /data/tableoperations-app
     networks:
