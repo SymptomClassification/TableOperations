@@ -21,7 +21,6 @@ pipeline {
                 sh './mvnw clean package'
             }
         }
-
         stage('Build Docker Images') {
             steps {
                 sh 'docker-compose build'
@@ -38,10 +37,9 @@ pipeline {
                 }
             }
         }
-
         stage('Start Container') {
-            withCredentials([string(credentialsId: 'DB_URL', variable: 'DB_URL'), string(credentialsId: 'DB_USERNAME', variable: 'DB_USERNAME'), string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD')]) {
-                steps {
+            steps {
+                withCredentials([string(credentialsId: 'DB_URL', variable: 'DB_URL'), string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'), string(credentialsId: 'DB_USERNAME', variable: 'DB_USERNAME')]) {
                     sh 'docker-compose up -d'
                 }
             }
