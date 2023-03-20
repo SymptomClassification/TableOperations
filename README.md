@@ -4,7 +4,6 @@ This repository contains the source code for managing the persistent data of the
 
 To start the microservice, you'll need to:
 - fulfill the prerequisites
-- export the configuration of your local database
 - build and start this microservice.
 
 The steps are specified in the following.
