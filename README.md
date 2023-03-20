@@ -18,13 +18,8 @@ Please install the following:
 ## Building and Starting
 
 To build and start the microservices, do:
-### Create Docker Network
 ```bash
 docker network create classificationnetwork
-```
-
-```bash
-./mvnw test
 ./mvnw clean package
 docker compose up 
 ```
