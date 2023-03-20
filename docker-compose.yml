@@ -10,10 +10,16 @@ services:
       MYSQL_USER: ahmet
       MYSQL_PASSWORD: mypass
       MYSQL_DATABASE: classification
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
     volumes:
       - ./Dump.sql:/docker-entrypoint-initdb.d/Dump.sql
     networks:
-      - classificationnetwork
+      default:
+        aliases:
+          - mysql-docker-container
     container_name: classification-db
 
   tableoperations-api:
@@ -29,11 +35,15 @@ services:
     volumes:
       - /data/tableoperations-app
     networks:
-      - classificationnetwork
+      default:
+        aliases:
+          - tableoperations
     container_name: tableoperations-api
     depends_on:
-      - mysql-docker-container
+      mysql-docker-container:
+        condition: service_healthy
 
 networks:
-  classificationnetwork:
-    driver: bridge
+  default:
+    external:
+      name: classificationnetwork

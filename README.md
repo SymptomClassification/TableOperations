@@ -15,21 +15,14 @@ Please install the following:
 - Docker
 - Docker Compose
 
-## Exporting the database configuration
-A mysql database should be configured via `$DB_URL`, `$DB_USERNAME` and `$DB_PASSWORD.`, e.g.:
-```bash
-export DB_URL="jdbc:mysql://mysql-docker-container:3306/classification?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&useLegacyDatetimeCode=false"
-export DB_USERNAME="ahmet"
-export DB_PASSWORD="mypass"
-```
-
 ## Building and Starting
 
-To build and start the microservice, do:
+To build and start the microservices, do:
 ```bash
 ./mvnw test
 ./mvnw clean package
-docker compose up
+docker compose up -d mysql-docker-container
+docker compose up -d table-operations
 ```
 # After the application is up and running
 - You can access the Swagger UI of application at http://localhost:8098/swagger-ui.html/index.html
