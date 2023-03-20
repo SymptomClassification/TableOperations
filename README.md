@@ -20,7 +20,7 @@ A mysql database should be configured via `$DB_URL`, `$DB_USERNAME` and `$DB_PAS
 ```bash
 export DB_URL="jdbc:mysql://mysql-docker-container:3306/classification?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&useLegacyDatetimeCode=false"
 export DB_USERNAME="ahmet"
-export DB_PASSWORD="ahmet
+export DB_PASSWORD="mypass"
 ```
 
 ## Building and Starting
