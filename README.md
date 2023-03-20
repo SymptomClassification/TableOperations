@@ -13,7 +13,7 @@ The steps are specified in the following.
 Please install the following:
 - Java JDK 17
 - Docker
-- Docker Compose 
+- Docker Compose
 
 ## Exporting the database configuration
 A mysql database should be configured via `$DB_URL`, `$DB_USERNAME` and `$DB_PASSWORD.`, e.g.:
@@ -31,4 +31,5 @@ To build and start the microservice, do:
 ./mvnw clean package
 docker compose up
 ```
-
+# After the application is up and running
+- You can access the Swagger UI of application at http://localhost:8098/swagger-ui.html/index.html
