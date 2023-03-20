@@ -24,4 +24,5 @@ docker network create classificationnetwork
 docker compose up 
 ```
 # After the application is up and running
-- You can access the Swagger UI of application at http://localhost:8098/swagger-ui.html/index.html
+- After approximately 1 minute You can access the Swagger UI of application at http://localhost:8098/swagger-ui/index.html
+- You can start SymptomClassifier service at https://github.com/SymptomClassification/SymptomClassifier
