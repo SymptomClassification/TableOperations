@@ -40,7 +40,7 @@ pipeline {
         stage('Start Container') {
             steps {
                 withCredentials([string(credentialsId: 'DB_URL', variable: 'DB_URL'), string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'), string(credentialsId: 'DB_USERNAME', variable: 'DB_USERNAME')]) {
-                    sh 'docker-compose up -d'
+                    sh 'docker-compose up --no-deps tableoperations-api'
                 }
             }
         }
